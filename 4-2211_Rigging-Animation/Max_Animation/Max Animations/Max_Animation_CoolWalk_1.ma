@@ -1,6 +1,6 @@
 //Maya ASCII 2018 scene
-//Name: Max_Animation_Beta_1.ma
-//Last modified: Tue, Jan 22, 2019 11:33:59 AM
+//Name: Max_Animation_CoolWalk_1.ma
+//Last modified: Tue, Jan 22, 2019 11:34:34 AM
 //Codeset: 1252
 requires maya "2018";
 requires "stereoCamera" "10.0";
@@ -75829,4 +75829,4 @@ connectAttr "Ibl_Light.iog" ":defaultLightSet.dsm" -na;
 connectAttr "key_Light.iog" ":defaultLightSet.dsm" -na;
 connectAttr "ikSplineSolver.msg" ":ikSystem.sol" -na;
 connectAttr "ikRPsolver.msg" ":ikSystem.sol" -na;
-// End of Max_Animation_Beta_1.ma
+// End of Max_Animation_CoolWalk_1.ma
