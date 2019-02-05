@@ -1,6 +1,6 @@
 //Maya ASCII 2018 scene
-//Name: Lamp_Model_1.ma
-//Last modified: Tue, Feb 05, 2019 03:42:44 PM
+//Name: Lamp_Model_2.ma
+//Last modified: Tue, Feb 05, 2019 03:42:58 PM
 //Codeset: 1252
 requires maya "2018";
 requires "stereoCamera" "10.0";
@@ -3231,7 +3231,7 @@ createNode displayLayer -n "Joints";
 	setAttr ".c" 9;
 	setAttr ".do" 1;
 createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
-	rename -uid "70DE9613-44A7-48FB-C5CB-B584A974606B";
+	rename -uid "202C50C7-4D3E-5CB4-D463-36A73CB2A29A";
 	setAttr ".pee" yes;
 	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
 	setAttr ".tgi[0].vl" -type "double2" 0 -213.00812161711855 ;
@@ -3399,4 +3399,4 @@ connectAttr "LampColor1.msg" ":defaultShaderList1.s" -na;
 connectAttr "LightBulbColor.msg" ":defaultShaderList1.s" -na;
 connectAttr "LampColor2.msg" ":defaultShaderList1.s" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
-// End of Lamp_Model_1.ma
+// End of Lamp_Model_2.ma
