@@ -1,6 +1,6 @@
 //Maya ASCII 2018 scene
-//Name: Osprey_Rig_4.ma
-//Last modified: Tue, Apr 16, 2019 02:22:17 PM
+//Name: Osprey_Rig_6.ma
+//Last modified: Tue, Apr 16, 2019 03:10:56 PM
 //Codeset: 1252
 requires maya "2018";
 requires "stereoCamera" "10.0";
@@ -14,17 +14,17 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "839037C2-475F-3909-D53C-7FAF0349CB29";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 58.018591952342412 12.022879431128434 14.166491736632754 ;
-	setAttr ".r" -type "double3" -1.5383555732160834 1869.7999999980707 2.878449238220913e-16 ;
+	setAttr ".t" -type "double3" 43.268448835053377 25.160411911510984 38.021314662634893 ;
+	setAttr ".r" -type "double3" -15.938355577438246 1844.2000000068044 2.218236588976134e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "586BA9A7-48D8-983C-D217-EA94F95695AD";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 60.330082230563946;
+	setAttr ".coi" 64.771723391550907;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
-	setAttr ".tp" -type "double3" 2.0933989741678261e-06 5.392334899766638 -5.2606343212633879 ;
+	setAttr ".tp" -type "double3" 9.5367431640625e-07 5 -1.5329932437668639 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 	setAttr ".ai_translator" -type "string" "perspective";
 createNode transform -s -n "top";
@@ -15404,7 +15404,7 @@ createNode mesh -n "Osprey_GeoShapeOrig" -p "Osprey_Geo";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
-createNode joint -n "COG_JNT";
+createNode joint -n "COG_JNT" -p "Osprey";
 	rename -uid "3E18B4BB-423D-011E-68F1-93AD7A2D553A";
 	addAttr -ci true -sn "liw" -ln "lockInfluenceWeights" -min 0 -max 1 -at "bool";
 	setAttr ".uoc" 1;
@@ -15419,6 +15419,7 @@ createNode joint -n "Spine_Root_03_JNT" -p "COG_JNT";
 	addAttr -ci true -sn "liw" -ln "lockInfluenceWeights" -min 0 -max 1 -at "bool";
 	setAttr ".uoc" 1;
 	setAttr ".oc" 1;
+	setAttr ".r" -type "double3" -2.336361327124497 0 0 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "none";
@@ -16021,23 +16022,61 @@ createNode joint -n "R_Finger_04_03_JNT" -p "R_Finger_04_02_JNT";
 		 1.1504773941622516e-16 -1.0000000000000002 -2.2412108830660665e-14 0 -4.4408920985006262e-16 2.2225978779605887e-14 -1.0000000000000002 0
 		 -5.0320299999999989 4.1957499999999994 -7.2012700000000001 1;
 	setAttr ".radi" 0.5;
+createNode transform -n "_CTRL_GRP";
+	rename -uid "6AB372D4-4560-E664-14D7-3AA4EB19FB7C";
+createNode transform -n "_CTRL" -p "_CTRL_GRP";
+	rename -uid "DA66856B-4D70-C875-40C3-7785C957CBCF";
+createNode nurbsCurve -n "_CTRLShape" -p "|_CTRL_GRP|_CTRL";
+	rename -uid "F9C5BC1B-449B-6E88-63A7-CD933D9D9A18";
+	setAttr -k off ".v";
+	setAttr ".tw" yes;
+createNode transform -n "_CTRL_GRP1";
+	rename -uid "CD4EC228-414B-9C9E-5BD5-5488916452A8";
+	setAttr ".rp" -type "double3" 9.5367431640625e-07 13.61495197355265 -1.5329932437668687 ;
+	setAttr ".sp" -type "double3" 9.5367431640625e-07 13.61495197355265 -1.5329932437668687 ;
+createNode transform -n "_CTRL" -p "_CTRL_GRP1";
+	rename -uid "27F5D3FB-47F0-4C9B-9F23-B584208CA7CC";
+	setAttr ".rp" -type "double3" 9.5367431640625e-07 13.61495197355265 -1.5329932437668687 ;
+	setAttr ".sp" -type "double3" 9.5367431640625e-07 13.61495197355265 -1.5329932437668687 ;
+createNode nurbsCurve -n "_CTRLShape" -p "|_CTRL_GRP1|_CTRL";
+	rename -uid "C363A2EB-4DD1-626E-C48E-70BD580E43FE";
+	setAttr -k off ".v";
+	setAttr ".ove" yes;
+	setAttr ".ovrgbf" yes;
+	setAttr ".ovrgb" -type "float3" 1 1 0 ;
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		7.8361172025865615 21.451068222464897 -1.5329932437668701
+		9.5367431708482313e-07 24.696893849096526 -1.5329932437668705
+		-7.8361152952379287 21.451068222464894 -1.5329932437668701
+		-11.081940921869565 13.61495197355265 -1.5329932437668687
+		-7.8361152952379287 5.7788357246404045 -1.5329932437668674
+		9.536743152961643e-07 2.5330100980087664 -1.532993243766867
+		7.8361172025865615 5.7788357246404054 -1.5329932437668674
+		11.081942829218198 13.614951973552648 -1.5329932437668687
+		7.8361172025865615 21.451068222464897 -1.5329932437668701
+		9.5367431708482313e-07 24.696893849096526 -1.5329932437668705
+		-7.8361152952379287 21.451068222464894 -1.5329932437668701
+		;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "B66AFBEA-43A9-ECE1-21CE-47AF6FEA38F8";
+	rename -uid "5993B581-4AA8-A7D1-86FB-7587B747156D";
 	setAttr -s 14 ".lnk";
 	setAttr -s 14 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "ECFA37B0-47AE-A6DD-EDF0-A7BFD869D440";
+	rename -uid "CEFE1861-478E-DF8F-71EE-8EA58406328D";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "AB9193D9-4A24-A841-1742-9FB4DF9FF7A5";
+	rename -uid "48C38727-4B6C-3A38-898B-77AF23AE0902";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "6CC7F9AE-4B14-1201-2E68-D2888AFDB8C2";
+	rename -uid "BC6941F3-446A-B0E5-5A05-EEA70CA51E05";
 	setAttr ".cdl" 5;
 	setAttr -s 5 ".dli[1:4]"  3 1 5 4;
 	setAttr -s 4 ".dli";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "26AD3975-4A62-AD95-3D41-82AFD8B6A801";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "4B5F4A82-467A-9582-01DC-FA87BDF2B5F9";
+	rename -uid "D7137FF1-46FF-9CE9-77E8-3FA222AB1D3A";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "283281B7-4F95-9684-3BD0-85B1F98E1261";
 	setAttr ".g" yes;
@@ -16057,7 +16096,7 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n"
 		+ "            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 1\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 16384\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n"
 		+ "            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n"
-		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1385\n            -height 747\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n"
+		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1119\n            -height 747\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n"
 		+ "            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n            -isSet 0\n            -isSetMember 0\n"
 		+ "            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n            -animLayerFilterOptions \"allAffecting\" \n            -sortOrder \"none\" \n            -longNames 0\n            -niceNames 1\n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 0\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            -renderFilterIndex 0\n            -selectionOrder \"chronological\" \n            -expandAttribute 0\n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"Outliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n"
 		+ "\t\toutlinerPanel -edit -l (localizedPanelLabel(\"Outliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 0\n            -showReferenceMembers 0\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n"
@@ -16083,8 +16122,8 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n"
 		+ "                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -highlightConnections 0\n                -copyConnectionsOnPaste 0\n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -activeTab -1\n                -editorMode \"default\" \n"
 		+ "                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
-		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1385\\n    -height 747\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1385\\n    -height 747\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1119\\n    -height 747\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1119\\n    -height 747\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
@@ -16113,7 +16152,6 @@ createNode displayLayer -n "Osprey_Mesh";
 	setAttr ".do" 3;
 createNode displayLayer -n "Osprey_Mesh_Skeleton";
 	rename -uid "233B0E24-4F83-A488-5EA2-D48A081FCD62";
-	setAttr ".v" no;
 	setAttr ".c" 16;
 	setAttr ".do" 2;
 createNode shadingEngine -n "polySurface25SG";
@@ -16271,7 +16309,7 @@ createNode place2dTexture -n "place2dTexture12";
 	rename -uid "FA2DAF1B-4AE1-F2B8-51B1-1B85DB5CD962";
 createNode bump2d -n "bump2d1";
 	rename -uid "69C81A49-42CE-5FD8-933B-55A4AEA1AEE3";
-	setAttr ".vc1" -type "float3" 0 9.9999997e-06 0 ;
+	setAttr ".vc1" -type "float3" 0 3.9999999e-05 0 ;
 	setAttr ".vc2" -type "float3" 9.9999997e-06 9.9999997e-06 0 ;
 createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
 	rename -uid "460B937D-4E61-8179-C446-BDB880B845E7";
@@ -16465,7 +16503,7 @@ createNode displayLayer -n "Osprey_Joint_Layer";
 	setAttr ".do" 1;
 createNode tweak -n "tweak1";
 	rename -uid "E65B27C1-4031-1743-0946-239FEE3BF950";
-	setAttr -s 194 ".vl[0].vt";
+	setAttr -s 176 ".vl[0].vt";
 	setAttr ".vl[0].vt[0]" -type "float3" -1.9073486e-06 0 0 ;
 	setAttr ".vl[0].vt[1]" -type "float3" -1.9073486e-06 0 0 ;
 	setAttr ".vl[0].vt[2]" -type "float3" -1.9073486e-06 0 0 ;
@@ -18465,7 +18503,7 @@ createNode skinCluster -n "skinCluster1";
 		13 0.00026058376463249165 17 9.9999997473787516e-05
 		5 3 0.99280251688257537 4 0.0029320867394925149 8 0.0011781415763288767 
 		12 0.0029872548041293893 17 9.9999997473787516e-05;
-	setAttr ".wl[900:1002].w"
+	setAttr ".wl[900:1003].w"
 		5 3 0.99280251688257537 4 0.0011781415763288767 8 0.0029320867394925149 
 		12 0.0029872548041293893 17 9.9999997473787516e-05
 		5 3 0.9925465515834575 4 0.0047839583851828349 12 0.0024694849044432409 
@@ -18539,18 +18577,17 @@ createNode skinCluster -n "skinCluster1";
 		31 0.00010002183439075737 34 0.00026543462137362052
 		5 15 9.9999997473787516e-05 17 0.00046432520922483117 18 0.99771230557610546 
 		34 0.001259010424466168 46 0.00046435879272982336
-		5 0 0.77529287338256836 2 0.056782788777713797 16 0.045788606796915175 
-		33 0.061770909781145578 41 0.060364821261657105
+		5 0 0.80172902345657349 2 0.050102456256245258 16 0.040401708307381649 
+		33 0.054503739105413576 41 0.053263072874386024
 		5 0 0.72496342658996582 2 0.078369580008292306 16 0.024389063593570098 
 		26 0.085147289424698014 48 0.087130640383473776
 		5 15 0.012816972099244595 17 0.00045841980795285751 18 0.98502315710568566 
 		19 0.0012429980227822643 31 0.00045845296433464142
-		5 15 0.00556604890152812 17 0.0006472561952161124 18 0.99142493048055902 
-		34 0.00171446403389923 46 0.00064730038879762166
-		5 2 0.82210248607554481 15 9.8308344604447484e-05 16 0.011093021204940821 
-		18 0.086590211744224252 48 0.080115972630685706
-		5 0 0.41209885478019714 2 0.10291739128563612 16 0.030057769940476545 
-		18 0.23629679624466235 33 0.21862918774902779
+		5 0 0.10588235408067703 15 0.0049799258287505322 18 0.88702465715165657 
+		34 0.0015339253887141704 46 0.00057913755020164235
+		5 0 0.83572989702224731 2 0.13506013758444418 16 0.0018224308958345481 
+		18 0.014225581493456783 48 0.013161953004017143
+		1 0 1
 		5 15 0.0029241251759231091 17 0.00064897576794067328 18 0.99405886010765943 
 		19 0.0017190188695450288 31 0.00064902007893176178
 		5 1 0.11560040436238675 15 0.12531035156359244 17 9.9999997473787516e-05 
@@ -18667,11 +18704,12 @@ createNode skinCluster -n "skinCluster1";
 		17 9.9999997473787516e-05 32 0.00010001186789038727
 		5 0 0.9995997346351877 15 0.00010016504111528473 16 0.000100088458332791 
 		17 9.9999997473787516e-05 47 0.00010001186789038729
-		2 0 0.48740921425779127 15 0.51229064483647913;
-	setAttr ".wl[1002:1102].w"
-		3 17 9.9999997473787516e-05 31 0.00010009393811350247 32 0.00010004697014227833
-		5 2 0.00010024801416771288 17 9.9999997473787516e-05 18 0.99735205186175169 
-		31 0.0017895123438011614 48 0.0006581877828056202
+		5 0 0.48740921425779127 15 0.51229064483647913 17 9.9999997473787516e-05 
+		31 0.00010009393811350247 32 0.00010004697014227833
+		1 2 0.00010024801416771288;
+	setAttr ".wl[1003:1103].w"
+		4 17 9.9999997473787516e-05 18 0.99735205186175169 31 0.0017895123438011614 
+		48 0.0006581877828056202
 		5 2 0.00046613500210537963 17 9.9999997473787516e-05 18 0.99698706063481513 
 		33 0.00065794691222641785 46 0.0017888574533793064
 		5 0 0.48740921425779132 15 0.51229064483647913 17 9.9999997473787516e-05 
@@ -18688,14 +18726,14 @@ createNode skinCluster -n "skinCluster1";
 		31 0.00010012813876996746 32 0.00010007327748050614
 		5 2 0.00031022844955201211 15 0.99938953921941354 17 9.9999997473787516e-05 
 		46 0.00010014360166123522 47 0.00010008873189948867
-		5 0 0.72997689247131348 2 0.017587333154620369 16 0.18122303748244839 
-		26 0.036614180906988696 33 0.034598555984629055
+		5 0 0.99882227182388306 16 0.00084533986340899411 26 0.00017079189884864227 
+		33 0.00016138973828328762 34 2.0667557601933579e-07
 		5 2 0.00011176059405734939 14 0.00031807282551981882 15 0.99937016094422115 
 		17 9.9999997473787516e-05 48 0.00010000563872787482
-		5 15 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 2 0.00011057300498604033 14 0.00031807320333963754 15 0.99937134803668182 
-		17 9.9999997473787516e-05 48 0.00010000575751863368
+		5 0 0.52941179275512695 15 0.47044697415248127 34 4.7106049121821952e-05 
+		47 4.7063521634977515e-05 48 4.7063521634977515e-05
+		5 2 0.00011057472042070756 14 0.00031807813794189246 15 0.99938685232957969 
+		34 8.4487503045238554e-05 48 0.00010000730901253937
 		5 0 0.94471611812972311 1 0.00017046126113786359 15 0.05491339923576833 
 		17 9.9999997473787516e-05 32 0.00010002137589691171
 		5 0 0.94471611812972311 1 0.00017046126113786359 15 0.05491339923576833 
@@ -18738,12 +18776,12 @@ createNode skinCluster -n "skinCluster1";
 		46 0.0001001025010260678 47 0.00010005125181264453
 		5 15 0.99959969250457292 17 9.9999997473787516e-05 30 0.00010015374511456983 
 		31 0.00010010250102606779 32 0.00010005125181264453
-		5 2 0.00035332779136154467 15 0.99934640295410426 17 9.9999997473787516e-05 
-		46 0.00010016661719154684 47 0.00010010263986887032
-		5 2 0.0006442785440935548 15 0.99905551049629004 17 9.9999997473787516e-05 
-		31 0.00010013746042130217 32 0.000100073501721318
-		5 2 0.00011469876898920713 15 0.38293740991747838 16 0.38335317240620631 
-		17 9.9999997473787516e-05 34 0.23349471890985224
+		5 2 0.00035333106972423715 15 0.99935567542019477 34 9.0722394816111773e-05 
+		46 0.00010016754659056061 47 0.00010010356867426855
+		5 2 0.00064431161635046866 15 0.9991067942474211 31 0.0001001426007008414 
+		32 0.00010007863871771426 34 4.8672896809875965e-05
+		5 2 0.00014962362548824989 15 0.4995387841723451 16 0.50008114300891948 
+		17 0.00013044919577342488 34 9.9999997473787516e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -18762,12 +18800,12 @@ createNode skinCluster -n "skinCluster1";
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787503e-05 
 		47 9.9999997473787503e-05 48 9.9999997473787503e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787543e-05 
-		47 9.9999997473787543e-05 48 9.9999997473787543e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787503e-05 
-		47 9.9999997473787503e-05 48 9.9999997473787503e-05
+		5 16 0.99966243109761133 32 0.0001000062430806231 33 0.0001000062430806231 
+		34 3.7550173146883026e-05 48 0.0001000062430806231
+		5 16 0.99962918002985801 34 7.0811220211908221e-05 46 0.00010000291664335696 
+		47 0.00010000291664335696 48 0.00010000291664335696
+		5 16 0.99959931360581622 17 9.9999928805893229e-05 34 0.00010068660776596516 
+		47 9.9999928805893215e-05 48 9.9999928805893215e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.999999747378753e-05 
@@ -18790,32 +18828,8 @@ createNode skinCluster -n "skinCluster1";
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99967095910372317 34 2.9019607609370723e-05 46 0.00010000709622246949 
+		47 0.00010000709622246949 48 0.00010000709622246949
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -18868,11 +18882,36 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
-		2 16 0.99960000001010485 17 9.9999997473787516e-05;
-	setAttr ".wl[1102:1202].w"
-		3 46 9.9999997473787516e-05 47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		1 16 0.99960000001010485;
+	setAttr ".wl[1103:1203].w"
+		4 17 9.9999997473787516e-05 32 9.9999997473787516e-05 33 9.9999997473787516e-05 
+		48 9.9999997473787516e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 16 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -19069,11 +19108,12 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 13 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
-		2 12 0.00013901586881743633 13 0.99956098413876115;
-	setAttr ".wl[1202:1302].w"
-		3 17 9.9999997473787516e-05 47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 12 0.00013901586881743633 13 0.99956098413876115 17 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		1 12 0.00013901586881743633;
+	setAttr ".wl[1203:1303].w"
+		4 13 0.99956098413876115 17 9.9999997473787516e-05 33 9.9999997473787516e-05 
+		48 9.9999997473787516e-05
 		5 3 0.00045050075553459306 12 0.0017262310365157225 13 0.99762326821300207 
 		17 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 12 0.0002513234353257806 13 0.99944867657225289 17 9.9999997473787516e-05 
@@ -19270,11 +19310,12 @@ createNode skinCluster -n "skinCluster1";
 		32 9.9999994472787786e-05 33 9.999999647318755e-05
 		5 17 9.9999997473787516e-05 35 0.99960000002010752 46 9.9999991472788204e-05 
 		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		2 17 9.9999997473787516e-05 20 0.99960000002010752;
-	setAttr ".wl[1302:1402].w"
-		3 31 9.9999991472788204e-05 32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 35 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 20 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		1 17 9.9999997473787516e-05;
+	setAttr ".wl[1303:1403].w"
+		4 35 0.99960000002010752 46 9.9999991472788204e-05 47 9.9999994472787786e-05 
+		48 9.999999647318755e-05
 		5 17 9.9999997473787516e-05 20 0.99960000002010752 31 9.9999991472788204e-05 
 		32 9.9999994472787786e-05 33 9.999999647318755e-05
 		5 17 9.9999997473787516e-05 35 0.99960000002010752 46 9.9999991472788204e-05 
@@ -19471,11 +19512,12 @@ createNode skinCluster -n "skinCluster1";
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.964416468974436 7 0.035283531033142662 17 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		2 10 0.964416468974436 11 0.035283531033142662;
-	setAttr ".wl[1402:1502].w"
-		3 17 9.9999997473787516e-05 33 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 10 0.964416468974436 11 0.035283531033142662 17 9.9999997473787516e-05 
+		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		1 6 0.99960000001010485;
+	setAttr ".wl[1403:1503].w"
+		4 17 9.9999997473787516e-05 46 9.9999997473787516e-05 47 9.9999997473787516e-05 
+		48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.99030137330196888 7 0.0093986267056097306 17 9.9999997473787516e-05 
@@ -19672,217 +19714,217 @@ createNode skinCluster -n "skinCluster1";
 		32 9.9999994472787786e-05 33 9.999999647318755e-05
 		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
 		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		2 17 9.9999997473787516e-05 37 0.99960001002210508;
-	setAttr ".wl[1502:1605].w"
-		3 46 9.9989992474393407e-05 47 9.9999992473388116e-05 48 9.9999995473387738e-05
-		5 17 9.9999997473787516e-05 22 0.99960001002210508 31 9.9989992474393407e-05 
-		32 9.9999992473388116e-05 33 9.9999995473387738e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
 		5 17 9.9999997473787516e-05 37 0.99960001002210508 46 9.9989992474393407e-05 
 		47 9.9999992473388116e-05 48 9.9999995473387738e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 22 0.99960001002210508 31 9.9989992474393407e-05 
-		32 9.9999992473388116e-05 33 9.9999995473387738e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 37 0.99960001002210508 46 9.9989992474393407e-05 
-		47 9.9999992473388116e-05 48 9.9999995473387738e-05
-		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
-		32 9.9989994474593082e-05 33 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
-		47 9.9989994474593082e-05 48 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
-		32 9.9989994474593082e-05 33 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
-		47 9.9989994474593082e-05 48 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
-		32 9.9989994474593082e-05 33 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
-		47 9.9989994474593082e-05 48 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
-		32 9.9989994474593082e-05 33 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
-		47 9.9989994474593082e-05 48 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
-		32 9.9989994474593082e-05 33 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
-		47 9.9989994474593082e-05 48 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
-		33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
-		48 9.998999747429276e-05
-		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
-		33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
-		48 9.998999747429276e-05
-		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
-		33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
-		48 9.998999747429276e-05
-		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
-		33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
-		48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
-		33 9.998999747429276e-05
-		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
-		48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
-		33 9.998999747429276e-05
-		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
-		48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
-		33 9.998999747429276e-05
-		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
-		48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
-		32 9.9979998474797931e-05 33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
-		47 9.9979998474797931e-05 48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
-		32 9.9979998474797931e-05 33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
-		47 9.9979998474797931e-05 48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
-		32 9.9979998474797931e-05 33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
-		47 9.9979998474797931e-05 48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
-		32 9.9979998474797931e-05 33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
-		47 9.9979998474797931e-05 48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
-		32 9.9979998474797931e-05 33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
-		47 9.9979998474797931e-05 48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
-		32 9.9979998474797931e-05 33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
-		47 9.9979998474797931e-05 48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
-		32 9.9979998474797931e-05 33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
-		47 9.9979998474797931e-05 48 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
-		32 9.9989994474593082e-05 33 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
-		47 9.9989994474593082e-05 48 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
-		32 9.9999994472787786e-05 33 9.999999647318755e-05
-		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
-		32 9.9989994474593082e-05 33 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
-		47 9.9989994474593082e-05 48 9.999999447378784e-05
-		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
-		47 9.9999994472787786e-05 48 9.999999647318755e-05
 		1 17 9.9999997473787516e-05;
-	setAttr ".wl[1605:1706].w"
-		4 21 0.99960000002010752 31 9.9999991472788204e-05 32 9.9999994472787786e-05 
-		33 9.999999647318755e-05
+	setAttr ".wl[1503:1605].w"
+		4 22 0.99960001002210508 31 9.9989992474393407e-05 32 9.9999992473388116e-05 
+		33 9.9999995473387738e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 37 0.99960001002210508 46 9.9989992474393407e-05 
+		47 9.9999992473388116e-05 48 9.9999995473387738e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 22 0.99960001002210508 31 9.9989992474393407e-05 
+		32 9.9999992473388116e-05 33 9.9999995473387738e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 37 0.99960001002210508 46 9.9989992474393407e-05 
+		47 9.9999992473388116e-05 48 9.9999995473387738e-05
+		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
+		32 9.9989994474593082e-05 33 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
+		47 9.9989994474593082e-05 48 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
+		32 9.9989994474593082e-05 33 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
+		47 9.9989994474593082e-05 48 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
+		32 9.9989994474593082e-05 33 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
+		47 9.9989994474593082e-05 48 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
+		32 9.9989994474593082e-05 33 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
+		47 9.9989994474593082e-05 48 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
+		32 9.9989994474593082e-05 33 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
+		47 9.9989994474593082e-05 48 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
+		33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
+		48 9.998999747429276e-05
+		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
+		33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
+		48 9.998999747429276e-05
+		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
+		33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
+		48 9.998999747429276e-05
+		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
+		33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
+		48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
+		33 9.998999747429276e-05
+		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
+		48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
+		33 9.998999747429276e-05
+		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
+		48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
+		33 9.998999747429276e-05
+		4 17 9.9999997473787516e-05 46 0.99970003000657714 47 9.9979998474797931e-05 
+		48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
+		32 9.9979998474797931e-05 33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
+		47 9.9979998474797931e-05 48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
+		32 9.9979998474797931e-05 33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
+		47 9.9979998474797931e-05 48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
+		32 9.9979998474797931e-05 33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
+		47 9.9979998474797931e-05 48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
+		32 9.9979998474797931e-05 33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
+		47 9.9979998474797931e-05 48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
+		32 9.9979998474797931e-05 33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
+		47 9.9979998474797931e-05 48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
+		32 9.9979998474797931e-05 33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
+		47 9.9979998474797931e-05 48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
+		32 9.9979998474797931e-05 33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 43 0.99960006000610191 46 9.9970000475203027e-05 
+		47 9.9979998474797931e-05 48 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
+		32 9.9989994474593082e-05 33 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
+		47 9.9989994474593082e-05 48 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
+		32 9.9989994474593082e-05 33 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
+		47 9.9989994474593082e-05 48 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 36 0.99960000002010752 46 9.9999991472788204e-05 
+		47 9.9999994472787786e-05 48 9.999999647318755e-05
+		5 17 9.9999997473787516e-05 21 0.99960000002010752 31 9.9999991472788204e-05 
+		32 9.9999994472787786e-05 33 9.999999647318755e-05;
+	setAttr ".wl[1606:1707].w"
 		5 17 9.9999997473787516e-05 25 0.99960003001810249 31 9.9979995475398212e-05 
 		32 9.9989994474593082e-05 33 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 40 0.99960003001810249 46 9.9979995475398212e-05 
@@ -20083,11 +20125,12 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9999992473388116e-05 48 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 22 0.99960001002210508 31 9.9989992474393407e-05 
 		32 9.9999992473388116e-05 33 9.9999995473387738e-05
-		2 17 9.9999997473787516e-05 37 0.99960001002210508;
-	setAttr ".wl[1706:1806].w"
-		3 46 9.9989992474393407e-05 47 9.9999992473388116e-05 48 9.9999995473387738e-05
-		5 17 9.9999997473787516e-05 22 0.99960001002210508 31 9.9989992474393407e-05 
-		32 9.9999992473388116e-05 33 9.9999995473387738e-05
+		5 17 9.9999997473787516e-05 37 0.99960001002210508 46 9.9989992474393407e-05 
+		47 9.9999992473388116e-05 48 9.9999995473387738e-05
+		1 17 9.9999997473787516e-05;
+	setAttr ".wl[1707:1807].w"
+		4 22 0.99960001002210508 31 9.9989992474393407e-05 32 9.9999992473388116e-05 
+		33 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 37 0.99960001002210508 46 9.9989992474393407e-05 
 		47 9.9999992473388116e-05 48 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 22 0.99960001002210508 31 9.9989992474393407e-05 
@@ -20284,11 +20327,12 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9999992473388116e-05 48 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 23 0.99960001002210508 31 9.9989992474393407e-05 
 		32 9.9999992473388116e-05 33 9.9999995473387738e-05
-		2 17 9.9999997473787516e-05 38 0.99960001002210508;
-	setAttr ".wl[1806:1906].w"
-		3 46 9.9989992474393407e-05 47 9.9999992473388116e-05 48 9.9999995473387738e-05
-		5 17 9.9999997473787516e-05 23 0.99960001002210508 31 9.9989992474393407e-05 
-		32 9.9999992473388116e-05 33 9.9999995473387738e-05
+		5 17 9.9999997473787516e-05 38 0.99960001002210508 46 9.9989992474393407e-05 
+		47 9.9999992473388116e-05 48 9.9999995473387738e-05
+		1 17 9.9999997473787516e-05;
+	setAttr ".wl[1807:1907].w"
+		4 23 0.99960001002210508 31 9.9989992474393407e-05 32 9.9999992473388116e-05 
+		33 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 38 0.99960001002210508 46 9.9989992474393407e-05 
 		47 9.9999992473388116e-05 48 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 23 0.99960001002210508 31 9.9989992474393407e-05 
@@ -20485,11 +20529,12 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9999992473388116e-05 48 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 23 0.99960001002210508 31 9.9989992474393407e-05 
 		32 9.9999992473388116e-05 33 9.9999995473387738e-05
-		2 17 9.9999997473787516e-05 38 0.99960001002210508;
-	setAttr ".wl[1906:2006].w"
-		3 46 9.9989992474393407e-05 47 9.9999992473388116e-05 48 9.9999995473387738e-05
-		5 17 9.9999997473787516e-05 23 0.99960001002210508 31 9.9989992474393407e-05 
-		32 9.9999992473388116e-05 33 9.9999995473387738e-05
+		5 17 9.9999997473787516e-05 38 0.99960001002210508 46 9.9989992474393407e-05 
+		47 9.9999992473388116e-05 48 9.9999995473387738e-05
+		1 17 9.9999997473787516e-05;
+	setAttr ".wl[1907:2007].w"
+		4 23 0.99960001002210508 31 9.9989992474393407e-05 32 9.9999992473388116e-05 
+		33 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 38 0.99960001002210508 46 9.9989992474393407e-05 
 		47 9.9999992473388116e-05 48 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 23 0.99960001002210508 31 9.9989992474393407e-05 
@@ -20686,11 +20731,12 @@ createNode skinCluster -n "skinCluster1";
 		32 9.9989994474593082e-05 33 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 26 0.99960003001810249 31 9.9979995475398212e-05 
 		32 9.9989994474593082e-05 33 9.999999447378784e-05
-		2 17 9.9999997473787516e-05 26 0.99960003001810249;
-	setAttr ".wl[2006:2142].w"
-		3 31 9.9979995475398212e-05 32 9.9989994474593082e-05 33 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 26 0.99960003001810249 31 9.9979995475398212e-05 
 		32 9.9989994474593082e-05 33 9.999999447378784e-05
+		1 17 9.9999997473787516e-05;
+	setAttr ".wl[2007:2143].w"
+		4 26 0.99960003001810249 31 9.9979995475398212e-05 32 9.9989994474593082e-05 
+		33 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 26 0.99960003001810249 31 9.9979995475398212e-05 
 		32 9.9989994474593082e-05 33 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 26 0.99960003001810249 31 9.9979995475398212e-05 
@@ -20881,6 +20927,8 @@ createNode skinCluster -n "skinCluster1";
 		3 17 9.9999997473787516e-05 32 0.99980001000505192 33 9.998999747429276e-05
 		3 17 9.9999997473787516e-05 32 0.99980001000505192 33 9.998999747429276e-05
 		3 17 9.9999997473787516e-05 32 0.99980001000505192 33 9.998999747429276e-05
+		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
+		33 9.998999747429276e-05
 		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
 		33 9.998999747429276e-05
 		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
@@ -20888,7 +20936,7 @@ createNode skinCluster -n "skinCluster1";
 		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
 		33 9.998999747429276e-05
 		1 17 9.9999997473787516e-05;
-	setAttr ".wl[2142:2243].w"
+	setAttr ".wl[2143:2243].w"
 		3 31 0.99970003000657714 32 9.9979998474797931e-05 33 9.998999747429276e-05
 		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
 		33 9.998999747429276e-05
@@ -20896,8 +20944,6 @@ createNode skinCluster -n "skinCluster1";
 		33 9.998999747429276e-05
 		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
 		33 9.998999747429276e-05
-		4 17 9.9999997473787516e-05 31 0.99970003000657714 32 9.9979998474797931e-05 
-		33 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 29 0.99960006000610191 31 9.9970000475203027e-05 
 		32 9.9979998474797931e-05 33 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 29 0.99960006000610191 31 9.9970000475203027e-05 
@@ -21090,10 +21136,9 @@ createNode skinCluster -n "skinCluster1";
 		32 9.9979998474797931e-05 33 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 29 0.99960006000610191 31 9.9970000475203027e-05 
 		32 9.9979998474797931e-05 33 9.998999747429276e-05
-		1 17 9.9999997473787516e-05;
-	setAttr ".wl[2243:2343].w"
-		4 28 0.99960006000610191 31 9.9970000475203027e-05 32 9.9979998474797931e-05 
-		33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
+		32 9.9979998474797931e-05 33 9.998999747429276e-05;
+	setAttr ".wl[2244:2343].w"
 		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
 		32 9.9979998474797931e-05 33 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 28 0.99960006000610191 31 9.9970000475203027e-05 
@@ -21292,10 +21337,9 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9989994474593082e-05 48 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 41 0.99960003001810249 46 9.9979995475398212e-05 
 		47 9.9989994474593082e-05 48 9.999999447378784e-05
-		1 17 9.9999997473787516e-05;
-	setAttr ".wl[2343:2479].w"
-		4 41 0.99960003001810249 46 9.9979995475398212e-05 47 9.9989994474593082e-05 
-		48 9.999999447378784e-05
+		5 17 9.9999997473787516e-05 41 0.99960003001810249 46 9.9979995475398212e-05 
+		47 9.9989994474593082e-05 48 9.999999447378784e-05;
+	setAttr ".wl[2344:2480].w"
 		5 17 9.9999997473787516e-05 41 0.99960003001810249 46 9.9979995475398212e-05 
 		47 9.9989994474593082e-05 48 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 41 0.99960003001810249 46 9.9979995475398212e-05 
@@ -21496,11 +21540,11 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9979998474797931e-05 48 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 44 0.99960006000610191 46 9.9970000475203027e-05 
 		47 9.9979998474797931e-05 48 9.998999747429276e-05
-		3 17 9.9999997473787516e-05 44 0.99960006000610191 46 9.9970000475203027e-05;
-	setAttr ".wl[2479:2579].w"
-		2 47 9.9979998474797931e-05 48 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 44 0.99960006000610191 46 9.9970000475203027e-05 
 		47 9.9979998474797931e-05 48 9.998999747429276e-05
+		2 17 9.9999997473787516e-05 44 0.99960006000610191;
+	setAttr ".wl[2480:2580].w"
+		3 46 9.9970000475203027e-05 47 9.9979998474797931e-05 48 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 44 0.99960005457277756 46 9.9971811402245342e-05 
 		47 9.9981809582951056e-05 48 9.9991808763574814e-05
 		5 17 9.9999997473787516e-05 44 0.99960005341102132 46 9.9972198615554434e-05 
@@ -21697,11 +21741,11 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 17 9.9999997473787516e-05 44 0.99960006000610191 46 9.9970000475203027e-05 
 		47 9.9979998474797931e-05 48 9.998999747429276e-05
-		3 17 9.9999997473787516e-05 44 0.99960006000610191 46 9.9970000475203027e-05;
-	setAttr ".wl[2579:2679].w"
-		2 47 9.9979998474797931e-05 48 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 44 0.99960006000610191 46 9.9970000475203027e-05 
-		47 9.9979998474797945e-05 48 9.998999747429276e-05
+		47 9.9979998474797931e-05 48 9.998999747429276e-05
+		2 17 9.9999997473787516e-05 44 0.99960006000610191;
+	setAttr ".wl[2580:2680].w"
+		3 46 9.9970000475203027e-05 47 9.9979998474797945e-05 48 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 44 0.99960006000610191 46 9.9970000475203027e-05 
 		47 9.9979998474797931e-05 48 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 44 0.99960006000610191 46 9.9970000475203027e-05 
@@ -21898,9 +21942,11 @@ createNode skinCluster -n "skinCluster1";
 		32 9.9979998474797931e-05 33 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 29 0.99960006000610191 31 9.9970000475203027e-05 
 		32 9.9979998474797931e-05 33 9.998999747429276e-05
-		3 17 9.9999997473787516e-05 29 0.99960006000610191 31 9.9970000475203027e-05;
-	setAttr ".wl[2679:2825].w"
-		2 32 9.9979998474797931e-05 33 9.998999747429276e-05
+		5 17 9.9999997473787516e-05 29 0.99960006000610191 31 9.9970000475203027e-05 
+		32 9.9979998474797931e-05 33 9.998999747429276e-05
+		2 17 9.9999997473787516e-05 29 0.99960006000610191;
+	setAttr ".wl[2680:2826].w"
+		3 31 9.9970000475203027e-05 32 9.9979998474797931e-05 33 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 29 0.99960006000610191 31 9.9970000475203027e-05 
 		32 9.9979998474797931e-05 33 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 29 0.99960006000610191 31 9.9970000475203027e-05 
@@ -21927,8 +21973,6 @@ createNode skinCluster -n "skinCluster1";
 		32 9.9979998474797931e-05 33 9.998999747429276e-05
 		5 17 9.9999997473787516e-05 29 0.99960006000610191 31 9.9970000475203027e-05 
 		32 9.9979998474797931e-05 33 9.998999747429276e-05
-		5 17 9.9999997473787516e-05 29 0.99960006000610191 31 9.9970000475203027e-05 
-		32 9.9979998474797931e-05 33 9.998999747429276e-05
 		3 17 9.9999997473787516e-05 32 0.99980001000505192 33 9.998999747429276e-05
 		3 17 9.9999997473787516e-05 32 0.99980001000505192 33 9.998999747429276e-05
 		3 17 9.9999997473787516e-05 32 0.99980001000505192 33 9.998999747429276e-05
@@ -22076,10 +22120,11 @@ createNode skinCluster -n "skinCluster1";
 		5 17 9.9999997473787516e-05 38 0.99960001002210508 46 9.9989992474393407e-05 
 		47 9.9999992473388116e-05 48 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 38 0.99960001002210508 46 9.9989992474393407e-05 
-		47 9.9999992473388116e-05 48 9.9999995473387738e-05;
-	setAttr ".wl[2826:2925].w"
-		5 17 9.9999997473787516e-05 38 0.99960001002210508 46 9.9989992474393407e-05 
 		47 9.9999992473388116e-05 48 9.9999995473387738e-05
+		4 17 9.9999997473787516e-05 38 0.99960001002210508 46 9.9989992474393407e-05 
+		47 9.9999992473388116e-05;
+	setAttr ".wl[2826:2926].w"
+		1 48 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 38 0.99960001002210508 46 9.9989992474393407e-05 
 		47 9.9999992473388116e-05 48 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 38 0.99960001002210508 46 9.9989992474393407e-05 
@@ -22277,10 +22322,11 @@ createNode skinCluster -n "skinCluster1";
 		5 17 9.9999997473787516e-05 41 0.99960003001810249 46 9.9979995475398212e-05 
 		47 9.9989994474593082e-05 48 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 41 0.99960003001810249 46 9.9979995475398212e-05 
-		47 9.9989994474593082e-05 48 9.999999447378784e-05;
-	setAttr ".wl[2926:3025].w"
-		5 17 9.9999997473787516e-05 23 0.99960001002210508 31 9.9989992474393407e-05 
-		32 9.9999992473388116e-05 33 9.9999995473387738e-05
+		47 9.9989994474593082e-05 48 9.999999447378784e-05
+		4 17 9.9999997473787516e-05 23 0.99960001002210508 31 9.9989992474393407e-05 
+		32 9.9999992473388116e-05;
+	setAttr ".wl[2926:3026].w"
+		1 33 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 23 0.99960001002210508 31 9.9989992474393407e-05 
 		32 9.9999992473388116e-05 33 9.9999995473387738e-05
 		5 17 9.9999997473787516e-05 23 0.99960001002210508 31 9.9989992474393407e-05 
@@ -22478,10 +22524,11 @@ createNode skinCluster -n "skinCluster1";
 		5 17 9.9999997473787516e-05 26 0.99960003001810249 31 9.9979995475398212e-05 
 		32 9.9989994474593082e-05 33 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 26 0.99960003001810249 31 9.9979995475398212e-05 
-		32 9.9989994474593082e-05 33 9.999999447378784e-05;
-	setAttr ".wl[3026:3125].w"
-		5 17 9.9999997473787516e-05 26 0.99960003001810249 31 9.9979995475398212e-05 
 		32 9.9989994474593082e-05 33 9.999999447378784e-05
+		4 17 9.9999997473787516e-05 26 0.99960003001810249 31 9.9979995475398212e-05 
+		32 9.9989994474593082e-05;
+	setAttr ".wl[3026:3126].w"
+		1 33 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 26 0.99960003001810249 31 9.9979995475398212e-05 
 		32 9.9989994474593082e-05 33 9.999999447378784e-05
 		5 17 9.9999997473787516e-05 26 0.99960003001810249 31 9.9979995475398212e-05 
@@ -22679,10 +22726,11 @@ createNode skinCluster -n "skinCluster1";
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787489e-05 
 		33 9.9999997473787489e-05 48 9.9999997473787489e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[3126:3225].w"
-		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[3126:3226].w"
+		1 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -22880,10 +22928,11 @@ createNode skinCluster -n "skinCluster1";
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[3226:3325].w"
-		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[3226:3326].w"
+		1 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787489e-05 
 		33 9.9999997473787489e-05 48 9.9999997473787489e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -23081,10 +23130,11 @@ createNode skinCluster -n "skinCluster1";
 		5 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[3326:3425].w"
-		5 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[3326:3426].w"
+		1 48 9.9999997473787516e-05
 		5 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -23282,10 +23332,11 @@ createNode skinCluster -n "skinCluster1";
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[3426:3525].w"
-		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[3426:3526].w"
+		1 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -23483,10 +23534,11 @@ createNode skinCluster -n "skinCluster1";
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[3526:3625].w"
-		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[3526:3626].w"
+		1 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -23684,10 +23736,11 @@ createNode skinCluster -n "skinCluster1";
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[3626:3725].w"
-		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[3626:3726].w"
+		1 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -23885,10 +23938,11 @@ createNode skinCluster -n "skinCluster1";
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[3726:3825].w"
-		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[3726:3826].w"
+		1 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -24086,10 +24140,11 @@ createNode skinCluster -n "skinCluster1";
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[3826:3925].w"
-		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[3826:3926].w"
+		1 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 10 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -24287,10 +24342,11 @@ createNode skinCluster -n "skinCluster1";
 		5 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.999999747378753e-05 
-		33 9.999999747378753e-05 48 9.999999747378753e-05;
-	setAttr ".wl[3926:4025].w"
-		5 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		33 9.999999747378753e-05 48 9.999999747378753e-05
+		4 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[3926:4026].w"
+		1 48 9.9999997473787516e-05
 		5 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 9 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -24488,10 +24544,11 @@ createNode skinCluster -n "skinCluster1";
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[4026:4125].w"
-		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[4026:4126].w"
+		1 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -24689,10 +24746,11 @@ createNode skinCluster -n "skinCluster1";
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
-		33 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[4126:4225].w"
-		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
 		33 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
+		33 9.9999997473787516e-05;
+	setAttr ".wl[4126:4226].w"
+		1 48 9.9999997473787516e-05
 		5 10 0.99959999994354842 17 9.9999997473787516e-05 32 0.0001000000196592974 
 		33 0.0001000000196592974 48 0.0001000000196592974
 		5 11 0.99960000001010485 17 9.9999997473787516e-05 32 9.9999997473787516e-05 
@@ -24890,16 +24948,17 @@ createNode skinCluster -n "skinCluster1";
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[4226:4325].w"
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05;
+	setAttr ".wl[4226:4326].w"
+		1 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -25091,10 +25150,11 @@ createNode skinCluster -n "skinCluster1";
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[4326:4425].w"
-		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05;
+	setAttr ".wl[4326:4426].w"
+		1 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -25292,10 +25352,11 @@ createNode skinCluster -n "skinCluster1";
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[4426:4525].w"
-		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05;
+	setAttr ".wl[4426:4526].w"
+		1 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -25492,11 +25553,12 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[4526:4625].w"
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05;
+	setAttr ".wl[4526:4626].w"
+		1 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -25694,10 +25756,11 @@ createNode skinCluster -n "skinCluster1";
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[4626:4725].w"
-		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05;
+	setAttr ".wl[4626:4726].w"
+		1 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -25895,10 +25958,11 @@ createNode skinCluster -n "skinCluster1";
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[4726:4825].w"
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05;
+	setAttr ".wl[4726:4826].w"
+		1 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -26096,8 +26160,11 @@ createNode skinCluster -n "skinCluster1";
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[4826:4925].w"
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05;
+	setAttr ".wl[4826:4926].w"
+		1 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -26120,8 +26187,6 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -26153,60 +26218,6 @@ createNode skinCluster -n "skinCluster1";
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
@@ -26232,7 +26243,53 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
@@ -26260,6 +26317,14 @@ createNode skinCluster -n "skinCluster1";
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -26297,10 +26362,11 @@ createNode skinCluster -n "skinCluster1";
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[4926:5025].w"
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05;
+	setAttr ".wl[4926:5026].w"
+		1 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -26498,10 +26564,11 @@ createNode skinCluster -n "skinCluster1";
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05;
-	setAttr ".wl[5026:5125].w"
-		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05;
+	setAttr ".wl[5026:5126].w"
+		1 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 5 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -26699,10 +26766,11 @@ createNode skinCluster -n "skinCluster1";
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05;
+		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		4 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
+		47 9.9999997473787516e-05;
 	setAttr ".wl[5126:5217].w"
-		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
-		47 9.9999997473787516e-05 48 9.9999997473787516e-05
+		1 48 9.9999997473787516e-05
 		5 6 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
 		47 9.9999997473787516e-05 48 9.9999997473787516e-05
 		5 7 0.99960000001010485 17 9.9999997473787516e-05 46 9.9999997473787516e-05 
@@ -27178,6 +27246,9 @@ createNode groupParts -n "groupParts16";
 createNode groupId -n "groupId16";
 	rename -uid "846C1F21-4680-D5E2-9C38-F795FC6A5E5E";
 	setAttr ".ihi" 0;
+createNode makeNurbCircle -n "makeNurbCircle1";
+	rename -uid "48798827-40A1-86A8-0B4D-CA986CDB40E5";
+	setAttr ".nr" -type "double3" 0 1 0 ;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -27212,8 +27283,7 @@ select -ne :defaultResolution;
 select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
+connectAttr "Osprey_Mesh.di" "Osprey_Geo.do";
 connectAttr "groupId1.id" "Osprey_GeoShape.iog.og[0].gid";
 connectAttr "Feathers_BrownSG.mwc" "Osprey_GeoShape.iog.og[0].gco";
 connectAttr "groupId2.id" "Osprey_GeoShape.iog.og[1].gid";
@@ -27333,6 +27403,7 @@ connectAttr "Osprey_Joint_Layer.di" "R_Finger_04_02_JNT.do";
 connectAttr "R_Finger_04_01_JNT.s" "R_Finger_04_02_JNT.is";
 connectAttr "Osprey_Joint_Layer.di" "R_Finger_04_03_JNT.do";
 connectAttr "R_Finger_04_02_JNT.s" "R_Finger_04_03_JNT.is";
+connectAttr "makeNurbCircle1.oc" "|_CTRL_GRP|_CTRL|_CTRLShape.cr";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "pCube14SG.message" ":defaultLightSet.message";
@@ -28153,4 +28224,4 @@ connectAttr "file11.msg" ":defaultTextureList1.tx" -na;
 connectAttr "file12.msg" ":defaultTextureList1.tx" -na;
 connectAttr "groupId16.msg" ":defaultLastHiddenSet.gn" -na;
 connectAttr "Osprey_GeoShape.iog.og[31]" ":defaultLastHiddenSet.dsm" -na;
-// End of Osprey_Rig_4.ma
+// End of Osprey_Rig_6.ma
